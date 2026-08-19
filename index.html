@@ -11,113 +11,6 @@
     --navy: #1A2744;
     --gray: #8B95A1;
     --border: #E5E8EB;
-    --bg-top: #EAF2FF;
-    --bg-bottom: #FFFFFF;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 45%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 48px 16px 80px;
-    color: #191F28;
-  }
-  .wrap { width: 100%; max-width: 520px; }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 40px;
-    font-weight: 800;
-    font-size: 20px;
-    color: var(--navy);
-  }
-  .brand .dot {
-    width: 28px; height: 28px;
-    border-radius: 9px;
-    background: var(--blue);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    flex-shrink: 0;
-  }
-  .brand .dot svg { width: 16px; height: 16px; }
-
-  .heading { text-align: center; margin-bottom: 32px; }
-  .heading .eyebrow {
-    font-size: 14px;
-    color: var(--blue-dark);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .heading h1 {
-    font-size: 24px;
-    font-weight: 800;
-    color: #191F28;
-  }
-
-  .card {
-    background: white;
-    border-radius: 20px;
-    padding: 28px 24px;
-    box-shadow: 0 8px 30px rgba(20, 40, 90, 0.08);
-  }
-
-  .section-label {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #191F28;
-    margin-bottom: 10px;
-  }
-  .time-slots {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 18px;
-  }
-  .time-slot {
-    box-sizing: border-box;
-    flex: 0 0 calc((100% - 16px) / 3);
-    text-align: center;
-    padding: 11px 0;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: #F9FAFB;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #4E5968;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.12s ease;
-  }
-  .time-slot:hover { border-color: #C7D3E0; }
-  .time-slot.selected {
-    background: var(--blue);
-    border-color: var(--blue);
-    color: white;
-  }
-
-  .field {
-    margin-bottom: 12px;
-  }
-  .field-row { display: flex; gap: 10px; }
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>엔프타 상담 문의</title>
-<style>
-  :root {
-    --blue: #3182F6;
-    --blue-dark: #1B64DA;
-    --navy: #1A2744;
-    --gray: #8B95A1;
-    --border: #E5E8EB;
     --bg-top: #FFFFFF;
     --bg-bottom: #FFFFFF;
   }
@@ -148,6 +41,17 @@
     width: auto;
     display: block;
   }
+  .brand .dot {
+    width: 28px; height: 28px;
+    border-radius: 9px;
+    background: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .brand .dot svg { width: 16px; height: 16px; }
 
   .heading { text-align: center; margin-bottom: 32px; }
   .heading .eyebrow {
@@ -402,7 +306,7 @@
 
 <div class="wrap">
 
-  <div class="brand"><img class="logo-img" src="data:image/png;base64,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" alt="NPTA"></div>
+  <div class="brand"><span class="dot"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20H6C4.89543 20 4 19.1046 4 18V12Z" fill="white"/><circle cx="12" cy="12" r="2.4" fill="#3182F6"/></svg></span>토스플레이스 공식인증대리점 엔프타</div>
 
   <div class="heading">
     <div class="eyebrow">주식회사 엔프타 대리점에 상담 문의하기</div>
