@@ -127,6 +127,51 @@
   input:focus, textarea:focus { border-color: var(--blue); background: white; }
   textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
 
+  select {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #F9FAFB;
+    color: #191F28;
+    outline: none;
+    transition: border-color 0.15s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B95A1' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  select:invalid { color: #B0B8C1; }
+  select:focus { border-color: var(--blue); background-color: white; }
+
+  .store-type-row {
+    display: flex;
+    gap: 8px;
+  }
+  .store-type-btn {
+    flex: 1;
+    text-align: center;
+    padding: 14px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #F9FAFB;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #4E5968;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.12s ease;
+  }
+  .store-type-btn:hover { border-color: #C7D3E0; }
+  .store-type-btn.selected {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+  }
+
   .consent { margin-top: 18px; }
   .consent-row {
     display: flex;
@@ -325,6 +370,12 @@
         <input type="text" id="bizNumber" placeholder="사업자번호 (선택)">
       </div>
 
+      <div class="section-label">매장 유형</div>
+      <div class="field store-type-row" id="storeTypeRow">
+        <div class="store-type-btn" data-value="기존사업자">기존사업자</div>
+        <div class="store-type-btn" data-value="신규사업자">신규사업자</div>
+      </div>
+
       <div class="section-label">상담 희망 날짜</div>
       <div class="field">
         <input type="date" id="prefDate">
@@ -417,6 +468,15 @@
     timeSlotsWrap.appendChild(btn);
   }
 
+  // 매장 유형: 기존사업자 / 신규사업자 단일 선택
+  let selectedStoreType = "";
+  document.querySelectorAll(".store-type-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".store-type-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      selectedStoreType = btn.dataset.value;
+    });
+  });
   const requiredRow = document.getElementById("requiredConsent");
   const marketingRow = document.getElementById("marketingConsent");
   let requiredChecked = true;
@@ -442,10 +502,15 @@
     const phone = document.getElementById("phone").value.trim();
     const shopName = document.getElementById("shopName").value.trim();
     const bizNumber = document.getElementById("bizNumber").value.trim();
+    const storeType = selectedStoreType;
     const message = document.getElementById("message").value.trim();
 
     if (!phone || !shopName) {
       alert("휴대폰 번호와 상호명은 필수입니다.");
+      return;
+    }
+    if (!storeType) {
+      alert("매장 유형을 선택해주세요.");
       return;
     }
 
@@ -458,6 +523,7 @@
       phone: phone,
       shopName: shopName,
       bizNumber: bizNumber,
+      storeType: storeType,
       preferredDate: dateInput.value || todayStr,
       preferredTime: selectedSlot || "미선택",
       message: message,
